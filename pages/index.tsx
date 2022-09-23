@@ -1,8 +1,14 @@
-import Airtable from "airtable";
 import { useEffect, useState } from "react";
 import randomItem from "random-item";
+import { words, AdjetiveResult } from "../services/airtable";
 
-export default function Home({ results }) {
+import { GetServerSideProps, NextPage } from "next";
+
+interface Data {
+  results: AdjetiveResult[];
+}
+
+const Home: NextPage<Data> = ({ results }) => {
   const [adjetive, setAdjetive] = useState({
     standard: "confundido",
     magnified: "perplejo",
@@ -10,13 +16,11 @@ export default function Home({ results }) {
 
   const [input, setInput] = useState("");
 
-  const findMagnified = (simple) => {
+  const findMagnified = (simple: string) => {
     return results.find((obj) => obj.standard === simple)?.magnified ?? "";
   };
 
   useEffect(() => setAdjetive(randomItem(results)), [results]);
-
-  console.log(input);
 
   return (
     <div className="">
@@ -56,27 +60,15 @@ export default function Home({ results }) {
         <li>input + initial load same place</li>
         <li>pretify</li>
       </ul>
-
       <footer className="bg-blue-500 text-lg">Eliaz Bobadilla 2022</footer>
     </div>
   );
-}
+};
 
-export async function getServerSideProps() {
-  Airtable.configure({
-    endpointUrl: "https://api.airtable.com",
-    apiKey: process.env.API_KEY,
-  });
-
-  const view = "production";
-
-  const base = Airtable.base(process.env.API_BASE);
-
-  const response = await base(view).select({ view }).all();
-
-  const results = response.map((data) => data.fields);
-
+export const getServerSideProps: GetServerSideProps<Data> = async () => {
   return {
-    props: { results },
+    props: { results: await words() },
   };
-}
+};
+
+export default Home;
