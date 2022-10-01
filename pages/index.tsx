@@ -10,6 +10,8 @@ interface MuyData {
 }
 
 const Home: NextPage<MuyData> = ({ results }) => {
+  console.log(results);
+
   return (
     <div className="flex h-screen justify-center items-center bg-gray-900">
       <div className="flex flex-col items-center mb-16 sm:text-center sm:mb-0">
@@ -20,25 +22,21 @@ const Home: NextPage<MuyData> = ({ results }) => {
           concisa del adjetivo.
         </p>
 
-        <div className="flex space-around space-x-2 my-5 text-center">
-          <p className="font-bold text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
-            muy
-          </p>
+        <div className="flex space-around space-x-2 my-5 text-center font-bold">
+          <p className="text-xl lg:text-4xl xl:text-5xl text-gray-500">muy</p>
 
-          <p className="font-bold text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
-            +
-          </p>
+          <p className="text-xl lg:text-4xl xl:text-5xl text-gray-500">+</p>
 
           <input
             id="input"
             placeholder="loading..."
             type="text"
-            className="border-b-2 font-sans text-2xl lg:text-4xl xl:text-5xl font-bold transition duration-200 bg-gray-700 appearance-none focus:outline-none"
+            className="px-1 lg:text-4xl xl:text-5xl bg-gray-700"
           />
 
-          <p className="text-2xl lg:text-4xl xl:text-5xl font-bold">=</p>
+          <p className="text-xl lg:text-4xl xl:text-5xl">=</p>
 
-          <p className="text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
+          <p className="text-xl lg:text-4xl xl:text-5xl text-gray-500">
             loading...
           </p>
         </div>
