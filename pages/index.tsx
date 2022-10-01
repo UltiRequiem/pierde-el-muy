@@ -107,7 +107,11 @@ const Home: NextPage<MuyData> = ({ results }) => {
           </button>
         </div>
 
-        <a href="https://airtable.com/shr1Y5Mclp3WcVXoH">
+        <a
+          href="https://airtable.com/shr1Y5Mclp3WcVXoH"
+          target="_blank"
+          rel="noreferrer"
+        >
           <button
             type="button"
             className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-2"
@@ -115,6 +119,15 @@ const Home: NextPage<MuyData> = ({ results }) => {
             Actualizar la base de datos
           </button>
         </a>
+
+        <footer className="p-4 rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 bg-gray-800 my-10">
+          <a
+            href="https://ultirequiem.com"
+            className="hover:underline"
+          >
+            © Eliaz Bobadilla
+          </a>
+        </footer>
       </div>
 
       <Head>
