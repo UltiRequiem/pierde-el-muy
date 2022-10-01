@@ -5,17 +5,18 @@ import randomItem from "random-item";
 import { useEffect, useState } from "react";
 import penPic from "../public/favicon.png";
 
-import { words, AdjetiveResult } from "../services/airtable";
+import { AdjetiveResult, words } from "../services/airtable";
 
 interface MuyData {
   results: AdjetiveResult[];
 }
 
-const Home: NextPage<MuyData> = ({ results }) => {
-  const notAddedYet = "Aún no agregado";
+const notAddedYet = "Aún no agregado";
+const loading = "loading...";
 
-  const [input, setInput] = useState("loading...");
-  const [adjetive, setAdjetive] = useState("loading...");
+const Home: NextPage<MuyData> = ({ results }) => {
+  const [input, setInput] = useState(loading);
+  const [adjetive, setAdjetive] = useState(loading);
 
   useEffect(() => {
     if (!results) {
@@ -59,6 +60,8 @@ const Home: NextPage<MuyData> = ({ results }) => {
             onInput={({ target }) => {
               const { value } = target as HTMLInputElement;
 
+              setInput(value);
+
               const result = findMagnified(value);
 
               result ? setAdjetive(result) : setAdjetive(notAddedYet);
@@ -76,6 +79,32 @@ const Home: NextPage<MuyData> = ({ results }) => {
           >
             {adjetive}
           </p>
+        </div>
+
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              const result = findMagnified(input);
+
+              result ? setAdjetive(result) : setAdjetive(notAddedYet);
+            }}
+            className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Obtener/Actualizar resultado
+          </button>
+          <button
+            type="button"
+            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            onClick={() => {
+              const random = randomItem(results);
+
+              setInput(random.standard);
+              setAdjetive(randomItem(random.magnifieds));
+            }}
+          >
+            Aleatorio
+          </button>
         </div>
       </div>
 
