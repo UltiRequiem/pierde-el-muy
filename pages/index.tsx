@@ -21,11 +21,11 @@ const Home: NextPage<MuyData> = ({ results }) => {
         </p>
 
         <div className="flex space-around space-x-2 my-5 text-center">
-          <p className="font-bold text-xl sm:text-2xl  lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
+          <p className="font-bold text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
             muy
           </p>
 
-          <p className="font-bold text-xl sm:text-2xl  lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
+          <p className="font-bold text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
             +
           </p>
 
@@ -33,18 +33,14 @@ const Home: NextPage<MuyData> = ({ results }) => {
             id="input"
             placeholder="loading..."
             type="text"
-            className="border-b-2 font-sans text-xl sm:text-2xl lg:text-4xl xl:text-5xl font-bold transition duration-200 bg-gray-700 appearance-none focus:outline-none"
+            className="border-b-2 font-sans text-2xl lg:text-4xl xl:text-5xl font-bold transition duration-200 bg-gray-700 appearance-none focus:outline-none"
           />
 
-          <p className="text-xl sm:text-4xl  lg:text-4xl xl:text-5xl font-bold">
-            =
-          </p>
+          <p className="text-2xl lg:text-4xl xl:text-5xl font-bold">=</p>
 
-          <div>
-            <p className="text-xl sm:text-2xl  lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
-              loading...
-            </p>
-          </div>
+          <p className="text-2xl lg:text-4xl xl:text-5xl font-bold text-gray-500 font-serif">
+            loading...
+          </p>
         </div>
       </div>
 
