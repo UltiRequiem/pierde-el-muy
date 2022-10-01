@@ -67,6 +67,7 @@ const Home: NextPage<MuyData> = ({ results }) => {
               result ? setAdjetive(result) : setAdjetive(notAddedYet);
             }}
             type="text"
+            value={input}
             className="px-1 lg:text-4xl xl:text-5xl bg-gray-700"
           />
 
@@ -121,10 +122,7 @@ const Home: NextPage<MuyData> = ({ results }) => {
         </a>
 
         <footer className="p-4 rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 bg-gray-800 my-10">
-          <a
-            href="https://ultirequiem.com"
-            className="hover:underline"
-          >
+          <a href="https://ultirequiem.com" className="hover:underline">
             © Eliaz Bobadilla
           </a>
         </footer>
