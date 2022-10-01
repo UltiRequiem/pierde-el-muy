@@ -12,6 +12,7 @@ const base = Airtable.base(process.env.API_BASE);
 
 const assertIsAdjetiveResult = (data: unknown[]): data is AdjetiveResult[] => {
   for (const result of data) {
+    // TODO: better assertions
     if (typeof result !== "object") {
       return false;
     }
