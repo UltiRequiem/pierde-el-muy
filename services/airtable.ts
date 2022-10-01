@@ -12,7 +12,6 @@ const base = Airtable.base(process.env.API_BASE);
 
 const assertIsAdjetiveResult = (data: unknown[]): data is AdjetiveResult[] => {
   for (const result of data) {
-    // TODO: better assertions
     if (typeof result !== "object") {
       return false;
     }
@@ -24,10 +23,12 @@ const assertIsAdjetiveResult = (data: unknown[]): data is AdjetiveResult[] => {
 export async function words(): Promise<AdjetiveResult[]> {
   const response = await base(view).select({ view }).all();
 
-  const fields = response.map(({ fields: { standard, magnified } }) => ({
-    standard,
-    magnified,
-  }));
+  const fields = response.map(({ fields: { standard, ...rest } }) => {
+    return {
+      standard,
+      magnifieds: Object.values(rest),
+    };
+  });
 
   if (!assertIsAdjetiveResult(fields)) {
     throw new AssertionError({
@@ -40,5 +41,5 @@ export async function words(): Promise<AdjetiveResult[]> {
 
 export interface AdjetiveResult {
   standard: string;
-  magnified: string;
+  magnifieds: string[];
 }
